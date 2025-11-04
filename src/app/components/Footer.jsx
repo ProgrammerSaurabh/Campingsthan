@@ -1,4 +1,5 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
+import Image from 'next/image';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,12 +13,17 @@ const Footer = () => {
         className='absolute inset-0 bg-linear-to-br from-black/10 via-black/10 to-black/10'
         aria-hidden='true'
       />
-
-      <img
+      <Image
         src='/media/footer.png'
-        alt=''
-        className='absolute inset-0 w-full h-full object-cover opacity-10'
+        alt='Decorative footer background'
+        fill
+        className='absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none select-none'
+        loading='lazy'
+        decoding='async'
+        priority={false}
         aria-hidden='true'
+        sizes='100vw'
+        unoptimized={false}
       />
       <div className='max-w-7xl mx-auto relative z-10'>
         <nav

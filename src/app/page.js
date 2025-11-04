@@ -9,6 +9,7 @@ import Gallery from './components/Gallery';
 import ContactUs from './components/ContactUs';
 import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
+import Image from 'next/image';
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -228,7 +229,7 @@ export default function CampingsthanWebsite() {
           className='relative h-screen overflow-hidden'
           role='banner'
         >
-          {/* <img
+          {/* <Image
             src='/media/IMG_9879.JPG'
             className='absolute inset-0 w-full h-full object-cover opacity-50'
           /> */}
@@ -275,8 +276,12 @@ export default function CampingsthanWebsite() {
             >
               <img
                 src='/media/whatsapp.svg'
-                alt=''
+                alt='WhatsApp Icon'
+                width={20}
+                height={20}
                 className='w-5 h-5'
+                loading='lazy'
+                decoding='async'
                 aria-hidden='true'
               />
               <span>Book Now</span>
@@ -532,8 +537,12 @@ export default function CampingsthanWebsite() {
                 >
                   <img
                     src='/media/whatsapp.svg'
-                    alt=''
+                    alt='WhatsApp Icon'
+                    width={20}
+                    height={20}
                     className='w-5 h-5'
+                    loading='lazy'
+                    decoding='async'
                     aria-hidden='true'
                   />
                   <span>Confirm Booking</span>
@@ -580,12 +589,17 @@ export default function CampingsthanWebsite() {
             </button>
 
             <figure className='max-w-5xl max-h-[80vh]'>
-              <img
+              <Image
                 src={modalImages[currentImageIndex]}
                 alt={`Gallery image ${currentImageIndex + 1} of ${
                   modalImages.length
                 }`}
-                className='max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl'
+                fill
+                className='object-contain rounded-2xl shadow-2xl'
+                priority
+                decoding='async'
+                loading='eager'
+                unoptimized={false}
               />
               <figcaption className='sr-only'>
                 Gallery image {currentImageIndex + 1} of {modalImages.length}

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 const galleryImages = [
   {
     url: '/media/IMG_9878.jpg',
@@ -101,11 +103,17 @@ const Gallery = ({
                 }}
               >
                 <figure className='relative overflow-hidden rounded-2xl shadow-xl cursor-pointer'>
-                  <img
+                  <Image
                     src={img.url}
-                    alt={img.alt}
+                    alt={img.alt || 'Gallery image'}
+                    width={800}
+                    height={600}
                     className='w-full h-auto transform group-hover:scale-110 transition-transform duration-500'
                     loading='lazy'
+                    decoding='async'
+                    quality={[100, 75]}
+                    priority={false}
+                    unoptimized={false}
                   />
                   <div
                     className='absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center'

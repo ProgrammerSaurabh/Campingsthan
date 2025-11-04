@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useState } from 'react';
 
 const stays = {
@@ -196,11 +197,17 @@ const Stays = ({
                   aria-label={`View ${img.alt}`}
                 >
                   <figure className='relative overflow-hidden rounded-2xl shadow-xl'>
-                    <img
+                    <Image
                       src={img.url}
-                      alt={img.alt}
+                      alt={img.alt || 'Gallery image'}
+                      width={800}
+                      height={600}
                       className='w-full h-auto transform group-hover:scale-110 transition-transform duration-500'
                       loading='lazy'
+                      decoding='async'
+                      quality={[100, 75]}
+                      priority={false}
+                      unoptimized={false}
                     />
                     <div
                       className='absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300'

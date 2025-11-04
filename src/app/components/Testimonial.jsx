@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
+import Image from 'next/image';
 
 export default function TestimonialSection({ testimonials = [] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -65,11 +66,15 @@ export default function TestimonialSection({ testimonials = [] }) {
               <div className='flex flex-col md:flex-row items-center gap-8'>
                 <figure className='shrink-0'>
                   <div className='relative'>
-                    <img
+                    <Image
                       src={testimonials[currentIndex].profile_photo_url}
-                      alt={`${testimonials[currentIndex].author_name}`}
-                      className='w-32 h-32 rounded-full object-cover border-4 border-accent shadow-xl'
+                      alt={testimonials[currentIndex].author_name}
+                      width={128}
+                      height={128}
+                      className='rounded-full object-cover border-4 border-accent shadow-xl'
                       loading='lazy'
+                      decoding='async'
+                      priority={false}
                     />
                     <div
                       className='absolute -top-2 -right-2 bg-accent rounded-full p-2 shadow-lg'

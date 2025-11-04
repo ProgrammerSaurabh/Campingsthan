@@ -1,4 +1,5 @@
 import { Users, Award, Heart } from 'lucide-react';
+import Image from 'next/image';
 
 const AboutUs = () => {
   return (
@@ -20,11 +21,15 @@ const AboutUs = () => {
 
         <article className='grid lg:grid-cols-2 gap-12 items-start mb-16'>
           <figure className='relative h-150 rounded-3xl overflow-hidden shadow-2xl'>
-            <img
+            <Image
               src='/media/IMG_0937.jpg'
               alt='Campingsthan glamping tents at Pawna Lake'
-              className='w-full h-full object-cover'
-              loading='lazy'
+              width={800}
+              height={600}
+              className='object-cover'
+              priority
+              decoding='async'
+              quality={[100, 75]}
             />
           </figure>
 

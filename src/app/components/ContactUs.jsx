@@ -261,8 +261,12 @@ const ContactUs = () => {
               >
                 <img
                   src='/media/whatsapp.svg'
-                  alt=''
+                  alt='WhatsApp Icon'
+                  width={20}
+                  height={20}
                   className='w-5 h-5'
+                  loading='lazy'
+                  decoding='async'
                   aria-hidden='true'
                 />
                 <span>Send Message</span>

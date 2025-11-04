@@ -1,7 +1,7 @@
 'use client';
 
 import { Gauge, Phone, Star, Users2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const stats = [
   { value: '5k+', label: 'Happy Campers', icon: Users2 },
@@ -15,11 +15,16 @@ const Jumbotron = ({ onClick = () => null, rating = null }) => {
       <div className='max-w-7xl w-full mx-auto grid lg:grid-cols-2 gap-12 items-center'>
         <div>
           <div className='w-20 h-20 mb-6 bg-accent rounded-2xl flex items-center justify-center shadow-2xl'>
-            <img
+            <Image
               src='/media/campingsthan-logo.png'
               alt='Campingsthan Logo'
-              width='80'
-              height='80'
+              width={80}
+              height={80}
+              className='h-auto w-auto'
+              loading='eager'
+              decoding='async'
+              priority
+              aria-hidden='false'
             />
           </div>
 
@@ -54,8 +59,12 @@ const Jumbotron = ({ onClick = () => null, rating = null }) => {
             >
               <img
                 src='/media/whatsapp.svg'
-                alt=''
+                alt='WhatsApp Icon'
+                width={20}
+                height={20}
                 className='w-5 h-5'
+                loading='lazy'
+                decoding='async'
                 aria-hidden='true'
               />
               <span>Book Now</span>

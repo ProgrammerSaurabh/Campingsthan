@@ -1,35 +1,55 @@
 const galleryImages = [
   {
-    url: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
+    url: '/media/IMG_9878.jpg',
     alt: 'Campingsthan tent setup at sunset',
   },
   {
-    url: 'https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=800',
-    alt: 'Glamping triangle tents at Pawna Lake',
+    url: '/media/IMG_9880.jpg',
+    alt: 'Campingsthan tent setup at sunset',
   },
   {
-    url: 'https://images.unsplash.com/photo-1537905569824-f89f14cceb68?w=800',
-    alt: 'Bonfire night at Campingsthan',
+    url: '/media/IMG_9881.jpg',
+    alt: 'Campingsthan tent setup at sunset',
   },
   {
-    url: 'https://images.unsplash.com/photo-1445308394109-4ec2920981b1?w=800',
-    alt: 'Scenic lake view from camping site',
+    url: '/media/IMG_9900.jpg',
+    alt: 'Campingsthan tent setup at sunset',
   },
   {
-    url: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6?w=800',
-    alt: 'Outdoor activities at Pawna Lake',
+    url: '/media/IMG_9899.jpg',
+    alt: 'Campingsthan tent setup at sunset',
   },
   {
-    url: 'https://images.unsplash.com/photo-1487730116645-74489c95b41b?w=800',
-    alt: 'Night camping under stars',
+    url: '/media/IMG_9898.jpg',
+    alt: 'Campingsthan tent setup at sunset',
   },
   {
-    url: 'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800',
-    alt: 'Camping tents with mountain backdrop',
+    url: '/media/IMG_9897.jpg',
+    alt: 'Campingsthan tent setup at sunset',
   },
   {
-    url: 'https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=800',
-    alt: 'Guests enjoying camping experience',
+    url: '/media/IMG_9892.jpg',
+    alt: 'Campingsthan tent setup at sunset',
+  },
+  {
+    url: '/media/IMG_9890.jpg',
+    alt: 'Campingsthan tent setup at sunset',
+  },
+  {
+    url: '/media/IMG_9889.jpg',
+    alt: 'Campingsthan tent setup at sunset',
+  },
+  {
+    url: '/media/IMG_9888.jpg',
+    alt: 'Campingsthan tent setup at sunset',
+  },
+  {
+    url: '/media/IMG_9886.jpg',
+    alt: 'Campingsthan tent setup at sunset',
+  },
+  {
+    url: '/media/IMG_9884.jpg',
+    alt: 'Campingsthan tent setup at sunset',
   },
 ];
 

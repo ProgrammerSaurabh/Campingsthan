@@ -19,9 +19,9 @@ const AboutUs = () => {
         </p>
 
         <article className='grid lg:grid-cols-2 gap-12 items-start mb-16'>
-          <figure className='relative h-96 rounded-3xl overflow-hidden shadow-2xl'>
+          <figure className='relative h-150 rounded-3xl overflow-hidden shadow-2xl'>
             <img
-              src='https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=1200'
+              src='/media/IMG_0937.jpg'
               alt='Campingsthan glamping tents at Pawna Lake'
               className='w-full h-full object-cover'
               loading='lazy'
@@ -30,22 +30,37 @@ const AboutUs = () => {
 
           <div className='space-y-6'>
             <p className='text-lg text-gray-300 leading-relaxed'>
-              Campingsthan is your gateway to peace, located beside the pristine
-              Pawna Lake. Crafted thoughtfully, our glamping triangles and
-              camping tents bring you closer to nature—without sacrificing
-              comfort.
+              Nestled beside the serene waters of Pawna Lake,{' '}
+              <strong>Campingsthan</strong> is your gateway to tranquility and
+              timeless memories. Here, the whisper of the wind, the shimmer of
+              the lake, and the majesty of the Sahyadri hills come together to
+              create a perfect escape from the chaos of everyday life.
             </p>
 
-            <blockquote className='border-l-4 border-primary pl-6 italic text-gray-300'>
-              "At Campingsthan, our mission is to offer seamless, memorable
-              nights under the sky—with quality stays, unlimited food, and
-              curated activities."
+            <p className='text-lg text-gray-300 leading-relaxed mt-4'>
+              Every glamping triangle and tent at Campingsthan is designed with
+              care—merging the raw beauty of nature with the comfort of modern
+              amenities. Whether you’re gazing at the stars through your tent
+              window or enjoying freshly prepared meals by the bonfire, every
+              detail is crafted to help you reconnect—with yourself, your loved
+              ones, and the outdoors.
+            </p>
+
+            <blockquote className='border-l-4 border-primary pl-6 italic text-gray-300 mt-6'>
+              "At Campingsthan, our mission is to create seamless, soulful
+              experiences beneath open skies—where guests enjoy comfort, local
+              flavors, and unforgettable adventures in nature’s embrace."
             </blockquote>
 
-            <p className='text-lg text-gray-300 leading-relaxed'>
-              Run with heart by a local team, Campingsthan is among
-              Maharashtra's most sought-after camping retreats—ideal for
-              families, couples, adventure seekers and peace lovers.
+            <p className='text-lg text-gray-300 leading-relaxed mt-4'>
+              Managed with heart by a passionate local team, Campingsthan has
+              become one of Maharashtra’s most loved glamping destinations. We
+              welcome{' '}
+              <strong>
+                families, couples, solo travelers, corporate groups, and
+                adventure enthusiasts
+              </strong>{' '}
+              alike to immerse themselves in the magic of lakeside living.
             </p>
           </div>
         </article>

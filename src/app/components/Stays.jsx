@@ -19,21 +19,33 @@ const stays = {
     price: { weekend: 1499, weekday: 1249 },
     images: [
       {
-        url: 'https://www.campingsthan.com/images/glamp1.png',
+        url: '/media/IMG_9883.jpg',
+        alt: 'Glamping triangle private deck area',
+      },
+      {
+        url: '/media/IMG_9724.png',
         alt: 'Glamping triangle exterior view',
       },
       {
-        url: 'https://www.campingsthan.com/images/glamp2.png',
+        url: '/media/IMG_9725.png',
         alt: 'Glamping triangle interior with queen bed',
       },
       {
-        url: 'https://www.campingsthan.com/images/glamp3.png',
+        url: '/media/IMG_9727.jpg',
+        alt: 'Glamping triangle private deck area',
+      },
+      {
+        url: '/media/IMG_9901.jpg',
+        alt: 'Glamping triangle private deck area',
+      },
+      {
+        url: '/media/IMG_9905.jpg',
         alt: 'Glamping triangle private deck area',
       },
     ],
   },
   camping: {
-    title: 'Classic Camping',
+    title: 'Standard Camping Tent',
     description:
       'Affordable yet magical! These cozy tents are ideal for groups or backpackers who want an authentic camping experience with essential comfort and community vibes.',
     facilities: [
@@ -46,19 +58,31 @@ const stays = {
       '⚡ Power Backup',
       '🌿 Lawn Area',
     ],
-    price: { weekend: 1099, weekday: 849 },
+    price: { weekend: 999, weekday: 849 },
     images: [
       {
-        url: 'https://www.campingsthan.com/images/camp1.png',
-        alt: 'Classic camping tents exterior',
+        url: '/media/IMG_9891.jpg',
+        alt: 'Standard Camping Tent tent interior setup',
       },
       {
-        url: 'https://www.campingsthan.com/images/camp2.png',
-        alt: 'Classic camping tent interior setup',
+        url: '/media/IMG_9887.jpg',
+        alt: 'Standard Camping Tent tents exterior',
       },
       {
-        url: 'https://www.campingsthan.com/images/camp3.png',
+        url: '/media/IMG_9903.jpg',
         alt: 'Camping area with bonfire',
+      },
+      {
+        url: '/media/IMG_9904.jpg',
+        alt: 'Camping area with bonfire',
+      },
+      {
+        url: '/media/IMG_9894.jpg',
+        alt: 'Glamping triangle private deck area',
+      },
+      {
+        url: '/media/IMG_9895.jpg',
+        alt: 'Glamping triangle private deck area',
       },
     ],
   },

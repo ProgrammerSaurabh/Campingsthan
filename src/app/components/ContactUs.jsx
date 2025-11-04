@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { useState } from 'react';
+import GoogleMap from './GoogleMap';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -56,15 +57,7 @@ const ContactUs = () => {
         <div className='grid lg:grid-cols-2 gap-12'>
           <div>
             <div className='rounded-3xl overflow-hidden shadow-2xl h-96 mb-6 border-4 border-primary'>
-              <iframe
-                src='https://www.google.com/maps?q=JFMW%2BMHQ,+Gevhande+Khadak,+Maharashtra+412108&output=embed'
-                width='100%'
-                height='100%'
-                style={{ border: 0 }}
-                allowFullScreen
-                loading='lazy'
-                title='Campingsthan location at Pawna Lake, Maharashtra'
-              />
+              <GoogleMap />
             </div>
 
             <article className='space-y-4'>
@@ -110,7 +103,7 @@ const ContactUs = () => {
                     className='w-5 h-5 text-accent'
                     aria-hidden='true'
                   />
-                  {['7558640623', '8530760323', '9011354222'].map((phone) => (
+                  {['7558640623', '8530760323'].map((phone) => (
                     <a
                       href={`tel:+91${phone}`}
                       key={`phone-${phone}`}

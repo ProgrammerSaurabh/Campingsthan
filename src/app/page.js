@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Phone } from 'lucide-react';
 import TestimonialSection from './components/Testimonial';
 import Jumbotron from './components/Jumbotron';
 import Stays from './components/Stays';
@@ -9,6 +9,104 @@ import Gallery from './components/Gallery';
 import ContactUs from './components/ContactUs';
 import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Campingsthan',
+  description:
+    'Luxury glamping and camping experience at Pawna Lake, Maharashtra. Limited to 50-60 guests for a private experience.',
+  image: 'https://www.campingsthan.com/images/glamp1.png',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'JFMW+MHQ, Thakursai-Aajiwali Road, Gevhande Khadak',
+    addressLocality: 'Pawna Lake',
+    addressRegion: 'Maharashtra',
+    postalCode: '412108',
+    addressCountry: 'IN',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 18.7,
+    longitude: 73.4,
+  },
+  hasMap:
+    'https://www.google.com/maps?q=JFMW%2BMHQ,+Gevhande+Khadak,+Maharashtra+412108&output=embed',
+  telephone: '+91-7558640623',
+  email: 'campingsthan@gmail.com',
+  priceRange: '₹849 - ₹1499',
+  starRating: {
+    '@type': 'Rating',
+    ratingValue: '4.8',
+    bestRating: '5',
+  },
+  amenityFeature: [
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: 'Free Wifi',
+      value: true,
+    },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: 'Parking Facility',
+      value: true,
+    },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: 'Bonfire Area',
+      value: true,
+    },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: 'Lake View',
+      value: true,
+    },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: 'Outdoor Games',
+      value: true,
+    },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: 'Boating & Kayaking',
+      value: true,
+    },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: 'Private Sitting Area',
+      value: true,
+    },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: 'Shared Washrooms',
+      value: true,
+    },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: 'Power Backup',
+      value: true,
+    },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: 'DJ & Live Music Nights',
+      value: true,
+    },
+  ],
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ],
+    opens: '16:00',
+    closes: '10:00',
+  },
+};
 
 export default function CampingsthanWebsite() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
@@ -31,103 +129,23 @@ export default function CampingsthanWebsite() {
   const [formErrors, setFormErrors] = useState({});
   const heroRef = useRef(null);
 
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'Campingsthan',
-    description:
-      'Luxury glamping and camping experience at Pawna Lake, Maharashtra. Limited to 50-60 guests for a private experience.',
-    image: 'https://www.campingsthan.com/images/glamp1.png',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'JFMW+MHQ, Thakursai-Aajiwali Road, Gevhande Khadak',
-      addressLocality: 'Pawna Lake',
-      addressRegion: 'Maharashtra',
-      postalCode: '412108',
-      addressCountry: 'IN',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 18.7,
-      longitude: 73.4,
-    },
-    hasMap:
-      'https://www.google.com/maps?q=JFMW%2BMHQ,+Gevhande+Khadak,+Maharashtra+412108&output=embed',
-    telephone: '+91-7558640623',
-    email: 'campingsthan@gmail.com',
-    priceRange: '₹849 - ₹1499',
-    starRating: {
-      '@type': 'Rating',
-      ratingValue: '4.8',
-      bestRating: '5',
-    },
-    amenityFeature: [
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Free Wifi',
-        value: true,
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Parking Facility',
-        value: true,
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Bonfire Area',
-        value: true,
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Lake View',
-        value: true,
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Outdoor Games',
-        value: true,
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Boating & Kayaking',
-        value: true,
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Private Sitting Area',
-        value: true,
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Shared Washrooms',
-        value: true,
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Power Backup',
-        value: true,
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'DJ & Live Music Nights',
-        value: true,
-      },
-    ],
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
-      ],
-      opens: '16:00',
-      closes: '10:00',
-    },
-  };
+  const [rating, setRating] = useState(null);
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    async function fetchRating() {
+      try {
+        const res = await fetch('/api/google-rating');
+        const data = await res.json();
+
+        setRating(`${data.rating} (${data.userRatingsTotal})`);
+
+        setTestimonials(data.reviews);
+      } catch (err) {}
+    }
+
+    fetchRating();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -210,6 +228,10 @@ export default function CampingsthanWebsite() {
           className='relative h-screen overflow-hidden'
           role='banner'
         >
+          {/* <img
+            src='/media/IMG_9879.JPG'
+            className='absolute inset-0 w-full h-full object-cover opacity-50'
+          /> */}
           <video
             autoPlay
             loop
@@ -219,7 +241,7 @@ export default function CampingsthanWebsite() {
             aria-hidden='true'
           >
             <source
-              src='/media/home-video.mp4'
+              src='/media/home-video.mov'
               type='video/mp4'
             />
             <track kind='captions' />
@@ -230,23 +252,36 @@ export default function CampingsthanWebsite() {
             aria-hidden='true'
           />
 
-          <Jumbotron onClick={handleBooking} />
+          <Jumbotron
+            onClick={handleBooking}
+            rating={rating}
+          />
         </header>
 
         {showFloatingCTA && (
-          <button
-            onClick={handleBooking}
-            className='cursor-pointer fixed bottom-8 right-8 z-50 px-6 py-3 bg-accent hover:bg-accent/90 rounded-full font-semibold shadow-2xl transition-all duration-300 transform hover:scale-110 flex justify-center items-center gap-2'
-            aria-label='Book your camping experience via WhatsApp'
-          >
-            <img
-              src='/media/whatsapp.svg'
-              alt=''
-              className='w-5 h-5'
-              aria-hidden='true'
-            />
-            <span>Book Now</span>
-          </button>
+          <div className='flex flex-col gap-2 fixed bottom-8 right-8 z-50'>
+            <a
+              href='tel:7558640623'
+              className='cursor-pointer px-8 py-4 bg-accent hover:bg-accent/90 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl text-md flex justify-center items-center gap-2  text-white!'
+              aria-label='Call now'
+            >
+              <Phone />
+              <span>Call now</span>
+            </a>
+            <button
+              onClick={handleBooking}
+              className='cursor-pointer px-6 py-3 bg-accent hover:bg-accent/90 rounded-full font-semibold shadow-2xl transition-all duration-300 transform hover:scale-110 flex justify-center items-center gap-2'
+              aria-label='Book your camping experience via WhatsApp'
+            >
+              <img
+                src='/media/whatsapp.svg'
+                alt=''
+                className='w-5 h-5'
+                aria-hidden='true'
+              />
+              <span>Book Now</span>
+            </button>
+          </div>
         )}
 
         <main id='main-content'>
@@ -264,7 +299,7 @@ export default function CampingsthanWebsite() {
 
           <AboutUs />
 
-          <TestimonialSection />
+          <TestimonialSection testimonials={testimonials} />
 
           <ContactUs />
         </main>
@@ -323,7 +358,7 @@ export default function CampingsthanWebsite() {
                       setFormData({ ...formData, type: 'classic' })
                     }
                   >
-                    Classic Camping
+                    Standard Camping Tent
                   </button>
                 </div>
 

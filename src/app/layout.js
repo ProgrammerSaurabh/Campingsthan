@@ -1,11 +1,4 @@
-import { Lato } from 'next/font/google';
 import './globals.css';
-
-const lato = Lato({
-  subsets: ['latin'],
-  weight: ['100', '300', '400', '700', '900'],
-  variable: '--font-lato',
-});
 
 export const metadata = {
   title: 'Campingsthan - Luxury Glamping & Camping at Pawna Lake, Maharashtra',
@@ -32,7 +25,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className={`${lato.className}`}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

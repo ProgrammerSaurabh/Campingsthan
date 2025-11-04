@@ -1,57 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 
-const testimonials = [
-  {
-    name: 'Priya Sharma',
-    location: 'Mumbai',
-    rating: 5,
-    text: 'Absolutely magical experience! The glamping tents were luxurious and comfortable. The bonfire night and stargazing were unforgettable. The team was incredibly hospitable and the food was delicious. Perfect weekend getaway!',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
-  },
-  {
-    name: 'Rahul Desai',
-    location: 'Pune',
-    rating: 5,
-    text: 'Best camping experience ever! The location by Pawna Lake is stunning. Activities were well organized and the live music night was amazing. Great value for money. Highly recommend for couples and families.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
-  },
-  {
-    name: 'Anjali Patel',
-    location: 'Ahmedabad',
-    rating: 5,
-    text: 'Perfect blend of adventure and comfort. The staff was friendly and attentive. Loved the morning nature walk and the sunset views. The tents were clean and well-maintained. Will definitely return with friends!',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
-  },
-  {
-    name: 'Vikram Singh',
-    location: 'Delhi',
-    rating: 5,
-    text: 'Outstanding service and beautiful location! The unlimited food was tasty and varied. Kayaking and boating were highlights. The DJ party was so much fun. A must-visit for anyone looking to disconnect and unwind.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150',
-  },
-  {
-    name: 'Sneha Reddy',
-    location: 'Bangalore',
-    rating: 5,
-    text: 'Incredible experience with nature! The glamping triangles are gorgeous and Instagram-worthy. The team made us feel at home. Perfect for a romantic getaway. The starlit sky and peaceful atmosphere were exactly what we needed.',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
-  },
-];
-
-export default function TestimonialSection() {
+export default function TestimonialSection({ testimonials = [] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
     if (!isAutoPlaying) return;
 
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    let interval = null;
+
+    if (testimonials.length > 0) {
+      clearInterval(interval);
+
+      setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      }, 5000);
+    }
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+  }, [isAutoPlaying, testimonials]);
 
   const goToPrevious = () => {
     setIsAutoPlaying(false);
@@ -69,6 +37,10 @@ export default function TestimonialSection() {
     setIsAutoPlaying(false);
     setCurrentIndex(index);
   };
+
+  if (testimonials.length === 0) {
+    return null;
+  }
 
   return (
     <section
@@ -94,8 +66,8 @@ export default function TestimonialSection() {
                 <figure className='shrink-0'>
                   <div className='relative'>
                     <img
-                      src={testimonials[currentIndex].image}
-                      alt={`${testimonials[currentIndex].name} from ${testimonials[currentIndex].location}`}
+                      src={testimonials[currentIndex].profile_photo_url}
+                      alt={`${testimonials[currentIndex].author_name}`}
                       className='w-32 h-32 rounded-full object-cover border-4 border-accent shadow-xl'
                       loading='lazy'
                     />
@@ -109,21 +81,24 @@ export default function TestimonialSection() {
                 </figure>
 
                 <div className='flex-1 text-center md:text-left'>
-                  <div
-                    className='flex justify-center md:justify-start gap-1 mb-4'
-                    role='img'
-                    aria-label={`${testimonials[currentIndex].rating} out of 5 stars`}
-                  >
-                    {[...Array(testimonials[currentIndex].rating)].map(
-                      (_, i) => (
-                        <Star
-                          key={i}
-                          className='w-5 h-5 fill-accent text-accent'
-                          aria-hidden='true'
-                        />
-                      )
-                    )}
-                  </div>
+                  {testimonials[currentIndex]?.rating && (
+                    <div
+                      className='flex justify-center md:justify-start gap-1 mb-4'
+                      role='img'
+                      aria-label={`${testimonials[currentIndex].rating} out of 5 stars`}
+                    >
+                      {[...Array(testimonials[currentIndex].rating)].map(
+                        (_, i) => (
+                          <Star
+                            key={i}
+                            className='w-5 h-5 text-accent'
+                            aria-hidden='true'
+                            fill='hsl(26.7deg 87.21% 57.06%)'
+                          />
+                        )
+                      )}
+                    </div>
+                  )}
 
                   <blockquote className='text-lg md:text-xl text-gray-200 mb-6 leading-relaxed italic'>
                     "{testimonials[currentIndex].text}"
@@ -131,15 +106,8 @@ export default function TestimonialSection() {
 
                   <figcaption>
                     <div className='text-2xl font-bold text-white mb-1'>
-                      {testimonials[currentIndex].name}
+                      {testimonials[currentIndex].author_name}
                     </div>
-                    <p className='text-gray-400 flex items-center justify-center md:justify-start gap-2'>
-                      <span
-                        className='w-2 h-2 bg-accent rounded-full'
-                        aria-hidden='true'
-                      />
-                      {testimonials[currentIndex].location}
-                    </p>
                   </figcaption>
                 </div>
               </div>

@@ -15,7 +15,7 @@ const ContactUs = () => {
   const validateForm = () => {
     const errors = {};
     if (!formData.name.trim()) errors.name = 'Name is required';
-    if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
+    if (formData.email && !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
       errors.email = 'Valid email is required';
     if (!formData.message.trim()) errors.message = 'Message is required';
     setFormErrors(errors);
@@ -27,7 +27,9 @@ const ContactUs = () => {
     if (validateForm()) {
       const whatsappNumber = '917558640623';
       const message = encodeURIComponent(
-        `Contact Form Submission\n\nName: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`
+        `Contact Form Submission\n\nName: ${formData.name}\nEmail: ${
+          formData.email ? formData.email : 'NA'
+        }\nMessage: ${formData.message}`
       );
       window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
       setFormData({ name: '', email: '', message: '' });
@@ -98,21 +100,27 @@ const ContactUs = () => {
                     lake, Pune, Maharashtra 412108
                   </span>
                 </div>
-                <div className='flex items-center gap-3 flex-wrap'>
+                <div className='flex items-center gap-2'>
                   <Phone
-                    className='w-5 h-5 text-accent'
+                    className='w-4 h-4 text-accent'
                     aria-hidden='true'
                   />
-                  {['7558640623', '8530760323'].map((phone) => (
+                  <div className='flex gap-2'>
                     <a
-                      href={`tel:+91${phone}`}
-                      key={`phone-${phone}`}
-                      className='text-gray-300 hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline'
-                      aria-label={`Call ${phone}`}
+                      href='tel:+917558640623'
+                      className='hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline border-r-2 pr-3'
+                      aria-label='Call us at 7558640623'
                     >
-                      +91 {phone}
+                      +91 7558640623
                     </a>
-                  ))}
+                    <a
+                      href='tel:+918530760323'
+                      className='hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline'
+                      aria-label='Call us at 8530760323'
+                    >
+                      +91 8530760323
+                    </a>
+                  </div>
                 </div>
                 <div className='flex items-center gap-3'>
                   <Mail
@@ -178,7 +186,7 @@ const ContactUs = () => {
                   htmlFor='contact-email'
                   className='block text-sm font-medium mb-2'
                 >
-                  Email *
+                  Email
                 </label>
                 <input
                   id='contact-email'
@@ -191,8 +199,6 @@ const ContactUs = () => {
                     formErrors.email ? 'border-red-500' : 'border-gray-700'
                   } focus:border-primary focus:outline-none transition-colors`}
                   placeholder='your@email.com'
-                  required
-                  aria-required='true'
                   aria-invalid={!!formErrors.email}
                   aria-describedby={
                     formErrors.email ? 'email-error' : undefined

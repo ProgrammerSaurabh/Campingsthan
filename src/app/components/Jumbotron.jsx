@@ -42,19 +42,19 @@ const Jumbotron = ({ onClick = () => null, rating = null }) => {
             experience.
           </p>
 
-          <div className='flex gap-2'>
+          <div className='flex flex-wrap gap-2 sm:gap-3 justify-start'>
             <a
               href='tel:7558640623'
-              className='cursor-pointer px-8 py-4 bg-accent hover:bg-accent/90 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl text-lg flex justify-center items-center gap-2  text-white!'
+              className='cursor-pointer px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-accent hover:bg-accent/90 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl text-sm sm:text-base md:text-lg flex justify-center items-center gap-2 text-white!'
               aria-label='Call now'
             >
-              <Phone />
+              <Phone className='w-4 h-4 sm:w-5 sm:h-5' />
               <span>Call now</span>
             </a>
 
             <button
               onClick={onClick}
-              className='cursor-pointer px-8 py-4 bg-accent hover:bg-accent/90 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl text-lg flex justify-center items-center gap-2'
+              className='cursor-pointer px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-accent hover:bg-accent/90 rounded-full font-semibold shadow-2xl transition-all duration-300 transform hover:scale-105 flex justify-center items-center gap-2 text-sm sm:text-base md:text-lg'
               aria-label='Book your camping experience via WhatsApp'
             >
               <img
@@ -62,7 +62,7 @@ const Jumbotron = ({ onClick = () => null, rating = null }) => {
                 alt='WhatsApp Icon'
                 width={20}
                 height={20}
-                className='w-5 h-5'
+                className='w-4 h-4 sm:w-5 sm:h-5'
                 loading='lazy'
                 decoding='async'
                 aria-hidden='true'

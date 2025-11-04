@@ -95,13 +95,22 @@ const Footer = () => {
                   className='w-4 h-4'
                   aria-hidden='true'
                 />
-                <a
-                  href='tel:+917558640623'
-                  className='hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline'
-                  aria-label='Call us at 7558640623'
-                >
-                  +91 7558640623
-                </a>
+                <div className='flex gap-2'>
+                  <a
+                    href='tel:+917558640623'
+                    className='hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline border-r-2 pr-3'
+                    aria-label='Call us at 7558640623'
+                  >
+                    +91 7558640623
+                  </a>
+                  <a
+                    href='tel:+918530760323'
+                    className='hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline'
+                    aria-label='Call us at 8530760323'
+                  >
+                    +91 8530760323
+                  </a>
+                </div>
               </div>
               <div className='flex items-center gap-2'>
                 <Mail

@@ -174,7 +174,7 @@ export default function CampingsthanWebsite() {
   const validateForm = () => {
     const errors = {};
     if (!formData.name.trim()) errors.name = 'Name is required';
-    if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
+    if (formData.email && !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
       errors.email = 'Valid email is required';
     if (!formData.adults.trim() || parseInt(formData.adults) < 1)
       errors.adults = 'At least one adult is required';
@@ -194,7 +194,7 @@ export default function CampingsthanWebsite() {
         `New Booking Request\n\nType: ${
           formData.type.charAt(0).toUpperCase() + formData.type.slice(1)
         }\nDate: ${formData.date}\nName: ${formData.name}\nEmail: ${
-          formData.email
+          formData.email ? formData.email : 'NA'
         }\nAdults: ${formData.adults}\nChildren (5-10): ${
           formData.childs510 || 0
         }\nChildren (0-5): ${formData.childs05 || 0}`
@@ -238,7 +238,7 @@ export default function CampingsthanWebsite() {
             loop
             muted
             playsInline
-            className='absolute inset-0 w-full h-full object-cover opacity-50'
+            className='absolute inset-0 w-full h-full object-cover opacity-20'
             aria-hidden='true'
           >
             <source
@@ -260,18 +260,19 @@ export default function CampingsthanWebsite() {
         </header>
 
         {showFloatingCTA && (
-          <div className='flex flex-col gap-2 fixed bottom-8 right-8 z-50'>
+          <div className='flex flex-col gap-2 fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8'>
             <a
               href='tel:7558640623'
-              className='cursor-pointer px-8 py-4 bg-accent hover:bg-accent/90 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl text-md flex justify-center items-center gap-2  text-white!'
+              className='cursor-pointer px-5 py-3 sm:px-8 sm:py-4 bg-accent hover:bg-accent/90 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl text-sm sm:text-md flex justify-center items-center gap-2 text-white!'
               aria-label='Call now'
             >
-              <Phone />
+              <Phone className='w-4 h-4 sm:w-5 sm:h-5' />
               <span>Call now</span>
             </a>
+
             <button
               onClick={handleBooking}
-              className='cursor-pointer px-6 py-3 bg-accent hover:bg-accent/90 rounded-full font-semibold shadow-2xl transition-all duration-300 transform hover:scale-110 flex justify-center items-center gap-2'
+              className='cursor-pointer px-4 py-2.5 sm:px-6 sm:py-3 bg-accent hover:bg-accent/90 rounded-full font-semibold shadow-2xl transition-all duration-300 transform hover:scale-110 flex justify-center items-center gap-2 text-sm sm:text-md'
               aria-label='Book your camping experience via WhatsApp'
             >
               <img
@@ -279,7 +280,7 @@ export default function CampingsthanWebsite() {
                 alt='WhatsApp Icon'
                 width={20}
                 height={20}
-                className='w-5 h-5'
+                className='w-4 h-4 sm:w-5 sm:h-5'
                 loading='lazy'
                 decoding='async'
                 aria-hidden='true'
@@ -494,7 +495,7 @@ export default function CampingsthanWebsite() {
                       htmlFor='booking-email'
                       className='block text-sm font-medium mb-2'
                     >
-                      Email *
+                      Email
                     </label>
                     <input
                       id='booking-email'
@@ -507,8 +508,6 @@ export default function CampingsthanWebsite() {
                         formErrors.email ? 'border-red-500' : 'border-gray-700'
                       } focus:border-primary focus:outline-none transition-colors`}
                       placeholder='john@example.com'
-                      required
-                      aria-required='true'
                       aria-invalid={!!formErrors.email}
                     />
                   </div>

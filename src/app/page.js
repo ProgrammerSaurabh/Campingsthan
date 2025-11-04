@@ -230,7 +230,7 @@ export default function CampingsthanWebsite() {
           role='banner'
         >
           {/* <Image
-            src='/media/IMG_9879.JPG'
+            src='/media/IMG_9879.jpg'
             className='absolute inset-0 w-full h-full object-cover opacity-50'
           /> */}
           <video

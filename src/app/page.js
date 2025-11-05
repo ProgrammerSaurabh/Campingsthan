@@ -242,7 +242,7 @@ export default function CampingsthanWebsite() {
             aria-hidden='true'
           >
             <source
-              src='/media/home-video.mov'
+              src='/media/home-video.mp4'
               type='video/mp4'
             />
             <track kind='captions' />

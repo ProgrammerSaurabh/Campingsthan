@@ -156,7 +156,7 @@ const Stays = ({
         </p>
 
         <div
-          className='flex justify-center gap-4 mb-12'
+          className='flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12'
           role='tablist'
           aria-label='Accommodation types'
         >
@@ -164,7 +164,7 @@ const Stays = ({
             <button
               key={key}
               onClick={() => setActiveTab(key)}
-              className={`cursor-pointer px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
+              className={`cursor-pointer px-4 py-2 sm:px-6 sm:py-3 rounded-full font-medium sm:font-semibold text-sm sm:text-base transition-all duration-300 ${
                 activeTab === key
                   ? 'bg-accent text-white'
                   : 'bg-white/10 text-gray-300 hover:bg-white/20'

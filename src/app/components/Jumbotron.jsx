@@ -30,6 +30,9 @@ const Jumbotron = ({ onClick = () => null, rating = null }) => {
 
           <h1 className='text-5xl md:text-7xl font-bold mb-4 leading-tight'>
             Campingsthan
+            <span className='sr-only'>
+              Discover the Best Camping & Glamping Experiences in India
+            </span>
           </h1>
 
           <p className='text-2xl md:text-3xl text-gray-300 font-light mb-8'>

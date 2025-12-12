@@ -109,6 +109,11 @@ const structuredData = {
   },
 };
 
+const newYearPrice = {
+  glamping: 3500,
+  camping: 2000,
+};
+
 export default function CampingsthanWebsite() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [modalImages, setModalImages] = useState([]);
@@ -185,6 +190,11 @@ export default function CampingsthanWebsite() {
     return Object.keys(errors).length === 0;
   };
 
+  const selectedDate = new Date(formData.date);
+
+  const isDec31 =
+    selectedDate.getDate() === 31 && selectedDate.getMonth() === 11;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
@@ -197,10 +207,13 @@ export default function CampingsthanWebsite() {
           formData.email ? formData.email : 'NA'
         }\nAdults: ${formData.adults}\nChildren (5-10): ${
           formData.childs510 || 0
-        }\nChildren (0-5): ${formData.childs05 || 0}`
+        }\nChildren (0-5): ${formData.childs05 || 0}${
+          isDec31 ? '\nNew year price: ₹' + newYearPrice[formData.type] : ''
+        }`
       );
 
       window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+
       setBookingModalOpen(false);
     }
   };
@@ -291,6 +304,12 @@ export default function CampingsthanWebsite() {
         )}
 
         <main id='main-content'>
+          <img
+            src='/media/new_year_banner.png'
+            alt='New year offer banner'
+            loading='lazy'
+            decoding='async'
+          />
           <Stays
             setCurrentImageIndex={setCurrentImageIndex}
             setModalImages={setModalImages}
@@ -357,11 +376,11 @@ export default function CampingsthanWebsite() {
                   </button>
                   <button
                     className={`cursor-pointer px-5 py-4 rounded-full text-sm flex-1 ${
-                      formData.type === 'classic' ? 'bg-accent' : 'bg-white/10'
+                      formData.type === 'camping' ? 'bg-accent' : 'bg-white/10'
                     }`}
                     type='button'
                     onClick={() =>
-                      setFormData({ ...formData, type: 'classic' })
+                      setFormData({ ...formData, type: 'camping' })
                     }
                   >
                     Standard Camping Tent
@@ -528,6 +547,25 @@ export default function CampingsthanWebsite() {
                     </li>
                   </ul>
                 </aside>
+
+                {isDec31 && newYearPrice[formData.type] && (
+                  <div className='mt-4 p-5 rounded-xl text-center shadow-xl animate-pulse bg-linear-to-r from-fuchsia-500/40 via-purple-500/40 to-blue-500/40 border border-fuchsia-300/50'>
+                    <div className='text-white text-xl font-extrabold tracking-wide drop-shadow'>
+                      🎉 New Year Booking Notice 🎉
+                    </div>
+
+                    <div className='mt-2 text-white text-base drop-shadow'>
+                      New Year dates have a separate pricing structure.
+                    </div>
+
+                    <div className='mt-3 text-3xl font-bold text-white drop-shadow-lg'>
+                      ₹{newYearPrice[formData.type]}
+                      <span className='text-sm font-normal text-white/80 ml-1'>
+                        per person
+                      </span>
+                    </div>
+                  </div>
+                )}
 
                 <button
                   type='submit'

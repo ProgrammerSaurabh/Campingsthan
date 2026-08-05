@@ -2,6 +2,41 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 const stays = {
+  "cocoon-glamp": {
+    title: 'Coccon Glamp',
+    description:
+      'Redefining your vacation with stylish stays, scenic escapes, and premium comfort.',
+    facilities: [
+      '🛏️ Queen size bed',
+      '❄️ Air Conditioner',
+      '🔥 Bonfire Area',
+      '🚻 Attached Washroom',
+      '🧴 Exclusive Toiletries',
+      '🛜 Wifi',
+      '🚗 Parking',
+      '⚡ Power Backup',
+      '🌿 Lawn Area',
+    ],
+    price: { weekend: 5499, weekday: 4499 },
+    images: [
+      {
+        url: '/media/IMG_4057.jpg',
+        alt: 'Standard Camping Tent tent interior setup',
+      },
+      {
+        url: '/media/IMG_4475.jpg',
+        alt: 'Camping area with bonfire',
+      },
+      {
+        url: '/media/IMG_4236.jpg',
+        alt: 'Camping area with bonfire',
+      },
+      {
+        url: '/media/IMG_4068.jpg',
+        alt: 'Standard Camping Tent tents exterior',
+      },
+    ],
+  },
   glamping: {
     title: 'Glamping Triangle',
     description:
@@ -17,7 +52,7 @@ const stays = {
       '⚡ Power Backup',
       '🌿 Lawn Area',
     ],
-    price: { weekend: 1499, weekday: 1249, newYear: 3500 },
+    price: { weekend: 1499, weekday: 1249 },
     images: [
       {
         url: '/media/IMG_9883.jpg',
@@ -50,16 +85,16 @@ const stays = {
     description:
       'Affordable yet magical! These cozy tents are ideal for groups or backpackers who want an authentic camping experience with essential comfort and community vibes.',
     facilities: [
-      '🛏️ Sleeping mats, pillows & blankets',
+      '🛏️ Sleeping Mats, Pillows & Blankets',
       '🔌 Charging Point',
-      '🔥 Bonfire area',
+      '🔥 Bonfire Area',
       '🚻 Shared Washroom',
       '🛜 Wifi',
       '🚗 Parking',
       '⚡ Power Backup',
       '🌿 Lawn Area',
     ],
-    price: { weekend: 999, weekday: 849, newYear: 2000 },
+    price: { weekend: 999, weekday: 849 },
     images: [
       {
         url: '/media/IMG_9891.jpg',
@@ -130,7 +165,7 @@ const Stays = ({
   setModalImages = () => null,
   setGalleryModalOpen = () => null,
 }) => {
-  const [activeTab, setActiveTab] = useState('glamping');
+  const [activeTab, setActiveTab] = useState('cocoon-glamp');
 
   const handleImageClick = (idx) => {
     setCurrentImageIndex(idx);
@@ -253,22 +288,6 @@ const Stays = ({
               </h4>
 
               <div className='grid grid-cols-2 gap-6'>
-                <div className='relative col-span-2 p-6 rounded-xl bg-linear-to-r from-fuchsia-500/40 via-purple-500/40 to-blue-500/40 border border-fuchsia-300/50 shadow-xl hover:shadow-fuchsia-400/50 hover:scale-[1.02] transition-all duration-300'>
-                  <div className='absolute -top-3 -right-3 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse'>
-                    NYE RATE
-                  </div>
-
-                  <div className='text-sm uppercase tracking-wide text-white/90 mb-2 text-center'>
-                    New Year Pricing
-                  </div>
-
-                  <div className='text-4xl font-extrabold text-white text-center drop-shadow-lg'>
-                    ₹{stays[activeTab].price.newYear}{' '}
-                    <span className='text-sm font-normal text-white/80'>
-                      per person
-                    </span>
-                  </div>
-                </div>
 
                 <div className='p-4 rounded-xl bg-white/5 hover:bg-white/10 transition'>
                   <div className='text-sm uppercase tracking-wide text-gray-300 mb-2 text-center'>

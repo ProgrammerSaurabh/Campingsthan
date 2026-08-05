@@ -2,6 +2,22 @@ import Image from 'next/image';
 
 const galleryImages = [
   {
+    url: '/media/IMG_4057.jpg',
+    alt: 'Campingsthan tent setup at sunset',
+  },
+  {
+    url: '/media/IMG_4068.jpg',
+    alt: 'Campingsthan tent setup at sunset',
+  },
+  {
+    url: '/media/IMG_4236.jpg',
+    alt: 'Campingsthan tent setup at sunset',
+  },
+  {
+    url: '/media/IMG_4475.jpg',
+    alt: 'Campingsthan tent setup at sunset',
+  },
+  {
     url: '/media/IMG_9878.jpg',
     alt: 'Campingsthan tent setup at sunset',
   },

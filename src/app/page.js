@@ -122,7 +122,7 @@ export default function CampingsthanWebsite() {
   const [showFloatingCTA, setShowFloatingCTA] = useState(false);
 
   const [formData, setFormData] = useState({
-    type: 'glamping',
+    type: 'cocoon-glamp',
     date: new Date().toISOString().split('T')[0],
     name: '',
     email: '',
@@ -202,7 +202,7 @@ export default function CampingsthanWebsite() {
 
       const message = encodeURIComponent(
         `New Booking Request\n\nType: ${
-          formData.type.charAt(0).toUpperCase() + formData.type.slice(1)
+          formData.type.charAt(0).toUpperCase() + formData.type.slice(1).replaceAll('-', " ")
         }\nDate: ${formData.date}\nName: ${formData.name}\nEmail: ${
           formData.email ? formData.email : 'NA'
         }\nAdults: ${formData.adults}\nChildren (5-10): ${
@@ -304,12 +304,6 @@ export default function CampingsthanWebsite() {
         )}
 
         <main id='main-content'>
-          <img
-            src='/media/new_year_banner.png'
-            alt='New year offer banner'
-            loading='lazy'
-            decoding='async'
-          />
           <Stays
             setCurrentImageIndex={setCurrentImageIndex}
             setModalImages={setModalImages}
@@ -363,6 +357,17 @@ export default function CampingsthanWebsite() {
                 className='p-8 pt-0 space-y-6'
               >
                 <div className='flex justify-center items-center gap-2 w-full'>
+                  <button
+                    className={`cursor-pointer px-5 py-4 rounded-full text-sm flex-1 ${
+                      formData.type === 'cocoon-glamp' ? 'bg-accent' : 'bg-white/10'
+                    }`}
+                    type='button'
+                    onClick={() =>
+                      setFormData({ ...formData, type: 'cocoon-glamp' })
+                    }
+                  >
+                    Cocoon Glamp
+                  </button>
                   <button
                     className={`cursor-pointer px-5 py-4 rounded-full text-sm flex-1 ${
                       formData.type === 'glamping' ? 'bg-accent' : 'bg-white/10'

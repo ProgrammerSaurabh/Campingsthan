@@ -1,164 +1,12 @@
-import Image from 'next/image';
+'use client';
+
 import { useState } from 'react';
 
-const stays = {
-  "cocoon-glamp": {
-    title: 'Coccon Glamp',
-    description:
-      'Redefining your vacation with stylish stays, scenic escapes, and premium comfort.',
-    facilities: [
-      '🛏️ Queen size bed',
-      '❄️ Air Conditioner',
-      '🔥 Bonfire Area',
-      '🚻 Attached Washroom',
-      '🧴 Exclusive Toiletries',
-      '🛜 Wifi',
-      '🚗 Parking',
-      '⚡ Power Backup',
-      '🌿 Lawn Area',
-    ],
-    price: { weekend: 5499, weekday: 4499 },
-    images: [
-      {
-        url: '/media/IMG_4057.jpg',
-        alt: 'Standard Camping Tent tent interior setup',
-      },
-      {
-        url: '/media/IMG_4475.jpg',
-        alt: 'Camping area with bonfire',
-      },
-      {
-        url: '/media/IMG_4236.jpg',
-        alt: 'Camping area with bonfire',
-      },
-      {
-        url: '/media/IMG_4068.jpg',
-        alt: 'Standard Camping Tent tents exterior',
-      },
-    ],
-  },
-  glamping: {
-    title: 'Glamping Triangle',
-    description:
-      'Our triangular luxury tents offer a stylish experience close to nature. Perfect for couples and solo travelers seeking comfort and tranquility. Enjoy soft lighting, cozy bedding, and a private deck under the stars.',
-    facilities: [
-      '🛏️ Queen size Bed',
-      '🔌 Charging Point',
-      '🌬️ Fan',
-      '🪑 Private Sitting Area',
-      '🚻 Shared Washroom',
-      '🛜 Wifi',
-      '🚗 Parking',
-      '⚡ Power Backup',
-      '🌿 Lawn Area',
-    ],
-    price: { weekend: 1499, weekday: 1249 },
-    images: [
-      {
-        url: '/media/IMG_9883.jpg',
-        alt: 'Glamping triangle private deck area',
-      },
-      {
-        url: '/media/IMG_9724.png',
-        alt: 'Glamping triangle exterior view',
-      },
-      {
-        url: '/media/IMG_9725.png',
-        alt: 'Glamping triangle interior with queen bed',
-      },
-      {
-        url: '/media/IMG_9727.jpg',
-        alt: 'Glamping triangle private deck area',
-      },
-      {
-        url: '/media/IMG_9901.jpg',
-        alt: 'Glamping triangle private deck area',
-      },
-      {
-        url: '/media/IMG_9905.jpg',
-        alt: 'Glamping triangle private deck area',
-      },
-    ],
-  },
-  camping: {
-    title: 'Standard Camping Tent',
-    description:
-      'Affordable yet magical! These cozy tents are ideal for groups or backpackers who want an authentic camping experience with essential comfort and community vibes.',
-    facilities: [
-      '🛏️ Sleeping Mats, Pillows & Blankets',
-      '🔌 Charging Point',
-      '🔥 Bonfire Area',
-      '🚻 Shared Washroom',
-      '🛜 Wifi',
-      '🚗 Parking',
-      '⚡ Power Backup',
-      '🌿 Lawn Area',
-    ],
-    price: { weekend: 999, weekday: 849 },
-    images: [
-      {
-        url: '/media/IMG_9891.jpg',
-        alt: 'Standard Camping Tent tent interior setup',
-      },
-      {
-        url: '/media/IMG_9887.jpg',
-        alt: 'Standard Camping Tent tents exterior',
-      },
-      {
-        url: '/media/IMG_9903.jpg',
-        alt: 'Camping area with bonfire',
-      },
-      {
-        url: '/media/IMG_9904.jpg',
-        alt: 'Camping area with bonfire',
-      },
-      {
-        url: '/media/IMG_9894.jpg',
-        alt: 'Glamping triangle private deck area',
-      },
-      {
-        url: '/media/IMG_9895.jpg',
-        alt: 'Glamping triangle private deck area',
-      },
-    ],
-  },
-};
-
-const foods = [
-  'Snacks - Tea & Pav Bhaji or Pakoda',
-  'Veg BBQ - Marinated Paneer & Assorted Veggies',
-  'Non-Veg BBQ - Marinated Chicken & Assorted Veggies',
-  'Veg Dinner - Dal Tadka, Mix-Veg/Paneer, Chapati, Rice, Salad & Sweet',
-  'Non-Veg Dinner - Chicken Curry, Egg Curry, Chapati, Rice, Salad & Sweet',
-  'Breakfast - Tea & Poha or Upma',
-];
-
-const activities = [
-  'Bonfire Nights 🔥',
-  'Nature Walks & Trails 🌿',
-  'Bird Watching 🐦',
-  'Outdoor Games',
-  'Star Gazing ✨',
-  'Boating & Kayaking 🚣',
-  'Relaxing by the Lake 🧘‍♀️',
-  'Tikona Fort Trekking (DIY) 🏞️',
-  'DJ Party (7-10 PM) 🎶',
-  '10:30-11:30 PM: Live Music (Sat or on request)',
-  '12 AM: Movie Screening 📽️',
-];
-
-const places = [
-  '🏞️ Pawna Lake: 0km',
-  '🏖️ Nirwana Waterfall: 2km',
-  '⛰️ Tikona Fort: 4km',
-  '🏯 Visapur Fort: 12km',
-  '🕳️ Bedse Caves: 12km',
-  '💧 Dudhiware Waterfall: 13km',
-  '🏯 Lohagad Fort: 15km',
-  '⛰️ Tung Fort: 24km',
-  '🌆 Lonavala: 24km',
-  "💧 Wet'nJoy Water Park: 26km",
-];
+import { stays, foods, activities, places } from '@/lib/site';
+import Media from '@/components/media';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 const Stays = ({
   setCurrentImageIndex = () => null,
@@ -167,208 +15,189 @@ const Stays = ({
 }) => {
   const [activeTab, setActiveTab] = useState('cocoon-glamp');
 
-  const handleImageClick = (idx) => {
+  const handleImageClick = (idx, stayImages) => {
     setCurrentImageIndex(idx);
-    setModalImages(stays[activeTab].images.map((img) => img.url));
+    setModalImages(stayImages.map((img) => img.url));
     setGalleryModalOpen(true);
   };
 
   return (
     <section
-      className='py-20 px-4 md:px-12 lg:px-24 bg-linear-to-b from-[hsl(0,0%,20.78%)] to-[hsl(0,0%,15%)]'
+      className='bg-background section-pad px-4 md:px-8'
       aria-labelledby='stays-heading'
       id='stays'
     >
-      <div className='max-w-7xl mx-auto'>
-        <h2
-          id='stays-heading'
-          className='text-5xl font-bold text-center mb-4'
-        >
-          Our Stays
-        </h2>
-        <p className='text-center text-gray-400 mb-12 text-lg'>
-          Choose your perfect accommodation
-        </p>
-
-        <div
-          className='flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12'
-          role='tablist'
-          aria-label='Accommodation types'
-        >
-          {Object.keys(stays).map((key) => (
-            <button
-              key={key}
-              onClick={() => setActiveTab(key)}
-              className={`cursor-pointer px-4 py-2 sm:px-6 sm:py-3 rounded-full font-medium sm:font-semibold text-sm sm:text-base transition-all duration-300 ${
-                activeTab === key
-                  ? 'bg-accent text-white'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
-              }`}
-              role='tab'
-              aria-selected={activeTab === key}
-              aria-controls={`${key}-panel`}
-              id={`${key}-tab`}
-            >
-              {stays[key].title}
-            </button>
-          ))}
+      <div className='mx-auto max-w-7xl'>
+        <div className='mb-10 text-center'>
+          <h2
+            id='stays-heading'
+            className='text-3xl font-extrabold sm:text-4xl md:text-5xl'
+          >
+            Our Stays
+          </h2>
+          <p className='text-muted-foreground mt-3 text-base sm:text-lg'>
+            Choose your perfect accommodation
+          </p>
         </div>
 
-        <article
-          id={`${activeTab}-panel`}
-          role='tabpanel'
-          aria-labelledby={`${activeTab}-tab`}
-          className='grid lg:grid-cols-2 gap-12 items-center'
-        >
-          <div className='masonry-grid'>
-            {stays[activeTab].images.map((img, idx) => (
-              <div
-                key={idx}
-                className='masonry-item cursor-pointer group'
-              >
-                <button
-                  onClick={() => handleImageClick(idx)}
-                  className='w-full text-left'
-                  aria-label={`View ${img.alt}`}
-                >
-                  <figure className='relative overflow-hidden rounded-2xl shadow-xl'>
-                    <Image
-                      src={img.url}
-                      alt={img.alt || 'Gallery image'}
-                      width={800}
-                      height={600}
-                      className='w-full h-auto transform group-hover:scale-110 transition-transform duration-500'
-                      loading='lazy'
-                      decoding='async'
-                      quality={[100, 75]}
-                      priority={false}
-                      unoptimized={false}
-                    />
-                    <div
-                      className='absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300'
-                      aria-hidden='true'
-                    />
-                  </figure>
-                </button>
-              </div>
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          <TabsList aria-label='Accommodation types'>
+            {Object.entries(stays).map(([key, stay]) => (
+              <TabsTrigger key={key} value={key}>
+                {stay.title}
+              </TabsTrigger>
             ))}
-          </div>
+          </TabsList>
 
-          <div>
-            <h3 className='text-3xl font-bold mb-4'>
-              {stays[activeTab].title}
-            </h3>
-            <p className='text-gray-300 mb-6 leading-relaxed'>
-              {stays[activeTab].description}
-            </p>
+          {Object.entries(stays).map(([key, stay]) => (
+            <TabsContent key={key} value={key}>
+              <Card>
+                <CardContent className='p-6 md:p-8'>
+                  <div className='grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-12'>
+                    <div>
+                      <h3 className='text-2xl font-bold sm:text-3xl'>
+                        {stay.title}
+                      </h3>
+                      <p className='text-muted-foreground mt-3 leading-relaxed'>
+                        {stay.description}
+                      </p>
 
-            <section className='mt-6 mb-6'>
-              <h4 className='text-xl font-semibold mb-3'>🏕️ Facilities</h4>
-              <ul
-                className='flex flex-wrap gap-2'
-                role='list'
-              >
-                {stays[activeTab].facilities.map((facility, idx) => (
-                  <li
-                    key={idx}
-                    className='px-3 py-1 bg-white/10 rounded-full text-sm'
-                  >
-                    {facility}
+                      <h4 className='mt-6 mb-3 text-base font-semibold'>
+                        🏕️ Facilities
+                      </h4>
+                      <ul className='flex flex-wrap gap-2'>
+                        {stay.facilities.map((facility) => (
+                          <li key={facility} className='min-w-0'>
+                            <Badge variant='muted'>{facility}</Badge>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div
+                      className='bg-background/40 rounded-2xl border border-border p-5'
+                      aria-label='Pricing information'
+                    >
+                      <h4 className='mb-4 text-center text-lg font-semibold'>
+                        💰 Pricing
+                      </h4>
+                      <div className='grid grid-cols-2 gap-3'>
+                        <div className='bg-card rounded-xl p-4 text-center'>
+                          <div className='text-muted-foreground text-xs tracking-wide uppercase'>
+                            Weekend
+                          </div>
+                          <div className='text-primary mt-1 text-2xl font-bold'>
+                            ₹{stay.price.weekend}
+                          </div>
+                          <div className='text-muted-foreground text-xs'>
+                            per person
+                          </div>
+                        </div>
+                        <div className='bg-card rounded-xl p-4 text-center'>
+                          <div className='text-muted-foreground text-xs tracking-wide uppercase'>
+                            Weekday
+                          </div>
+                          <div className='text-primary mt-1 text-2xl font-bold'>
+                            ₹{stay.price.weekday}
+                          </div>
+                          <div className='text-muted-foreground text-xs'>
+                            per person
+                          </div>
+                        </div>
+                      </div>
+                      <p className='text-muted-foreground mt-4 text-center text-xs'>
+                        Prices vary by season
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className='masonry-wrap mt-8'>
+                    <div className='masonry-grid'>
+                      {stay.images.map((img, idx) => (
+                        <figure
+                          key={img.url}
+                          className='masonry-item group relative cursor-pointer overflow-hidden rounded-2xl shadow-md'
+                        >
+                          <button
+                            type='button'
+                            className='block w-full'
+                            aria-label={`View ${img.alt}`}
+                            onClick={() => handleImageClick(idx, stay.images)}
+                          >
+                            <Media
+                              src={img.url}
+                              alt={img.alt}
+                              sizes='(max-width: 639px) 50vw, 25vw'
+                              imageClassName='h-auto w-full transition-transform duration-500 group-hover:scale-105'
+                            />
+                          </button>
+                        </figure>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          ))}
+        </Tabs>
+
+        <div className='mt-12 grid gap-6 lg:grid-cols-3'>
+          <Card>
+            <CardContent className='p-6'>
+              <h4 className='mb-4 text-lg font-semibold'>🍽️ Food & Dining</h4>
+              <ul className='flex flex-wrap gap-2'>
+                {foods.map((food) => (
+                  <li key={food} className='min-w-0'>
+                    <Badge
+                      variant='muted'
+                      className='h-auto max-w-full py-1.5 text-left whitespace-normal'
+                    >
+                      {food}
+                    </Badge>
                   </li>
                 ))}
               </ul>
-            </section>
+            </CardContent>
+          </Card>
 
-            <aside
-              className='bg-white/10 rounded-2xl p-6 backdrop-blur-xl border border-white/20 shadow-lg'
-              aria-label='Pricing information'
-            >
-              <h4 className='text-2xl font-semibold text-white mb-6 text-center'>
-                💰 Pricing
+          <Card>
+            <CardContent className='p-6'>
+              <h4 className='mb-4 text-lg font-semibold'>
+                🎉 Activities & Entertainment
               </h4>
+              <ul className='flex flex-wrap gap-2'>
+                {activities.map((activity) => (
+                  <li key={activity} className='min-w-0'>
+                    <Badge
+                      variant='muted'
+                      className='h-auto max-w-full py-1.5 text-left whitespace-normal'
+                    >
+                      {activity}
+                    </Badge>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
 
-              <div className='grid grid-cols-2 gap-6'>
-
-                <div className='p-4 rounded-xl bg-white/5 hover:bg-white/10 transition'>
-                  <div className='text-sm uppercase tracking-wide text-gray-300 mb-2 text-center'>
-                    Weekend
-                  </div>
-                  <div className='text-3xl font-bold text-accent text-center'>
-                    ₹{stays[activeTab].price.weekend}{' '}
-                    <span className='text-sm font-normal'>per person</span>
-                  </div>
-                </div>
-
-                <div className='p-4 rounded-xl bg-white/5 hover:bg-white/10 transition'>
-                  <div className='text-sm uppercase tracking-wide text-gray-300 mb-2 text-center'>
-                    Weekday
-                  </div>
-                  <div className='text-3xl font-bold text-accent text-center'>
-                    ₹{stays[activeTab].price.weekday}{' '}
-                    <span className='text-sm font-normal'>per person</span>
-                  </div>
-                </div>
-              </div>
-
-              <p className='mt-6 text-sm text-gray-400 text-center'>
-                Taxes & fees may apply · Prices vary by season
-              </p>
-            </aside>
-          </div>
-
-          <section className='mt-6 lg:col-span-2'>
-            <h4 className='text-xl font-semibold mb-3'>🍽️ Food & Dining</h4>
-            <ul
-              className='flex flex-wrap gap-2'
-              role='list'
-            >
-              {foods.map((food, idx) => (
-                <li
-                  key={`food-${idx}`}
-                  className='px-3 py-1 bg-white/10 rounded-full text-sm'
-                >
-                  {food}
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className='mt-6 lg:col-span-2'>
-            <h4 className='text-xl font-semibold mb-3'>
-              🎉 Activities & Entertainment
-            </h4>
-            <ul
-              className='flex flex-wrap gap-2'
-              role='list'
-            >
-              {activities.map((activity, idx) => (
-                <li
-                  key={`activity-${idx}`}
-                  className='px-3 py-1 bg-white/10 rounded-full text-sm'
-                >
-                  {activity}
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className='mt-6 lg:col-span-2'>
-            <h4 className='text-xl font-semibold mb-3'>📍 Nearby Places</h4>
-            <ul
-              className='flex flex-wrap gap-2'
-              role='list'
-            >
-              {places.map((place, idx) => (
-                <li
-                  key={`place-${idx}`}
-                  className='px-3 py-1 bg-white/10 rounded-full text-sm'
-                >
-                  {place}
-                </li>
-              ))}
-            </ul>
-          </section>
-        </article>
+          <Card>
+            <CardContent className='p-6'>
+              <h4 className='mb-4 text-lg font-semibold'>📍 Nearby Places</h4>
+              <ul className='flex flex-wrap gap-2'>
+                {places.map((place) => (
+                  <li key={place} className='min-w-0'>
+                    <Badge
+                      variant='muted'
+                      className='h-auto max-w-full py-1.5 text-left whitespace-normal'
+                    >
+                      {place}
+                    </Badge>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
   );

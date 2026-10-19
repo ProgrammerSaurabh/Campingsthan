@@ -1,149 +1,89 @@
-import Image from 'next/image';
+'use client';
 
-const galleryImages = [
-  {
-    url: '/media/IMG_4057.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_4068.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_4236.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_4475.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9878.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9880.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9881.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9900.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9899.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9898.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9897.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9892.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9890.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9889.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9888.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9886.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-  {
-    url: '/media/IMG_9884.jpg',
-    alt: 'Campingsthan tent setup at sunset',
-  },
-];
+import { useState } from 'react';
+
+import { galleryImages } from '@/lib/site';
+import Media from '@/components/media';
+import { Button } from '@/components/ui/button';
+
+const MOBILE_PREVIEW_COUNT = 10;
 
 const Gallery = ({
   setCurrentImageIndex = () => null,
   setModalImages = () => null,
   setGalleryModalOpen = () => null,
 }) => {
+  const [showAll, setShowAll] = useState(false);
+
   const handleImageClick = (idx) => {
     setCurrentImageIndex(idx);
     setModalImages(galleryImages.map((img) => img.url));
     setGalleryModalOpen(true);
   };
 
+  const hiddenCount = galleryImages.length - MOBILE_PREVIEW_COUNT;
+
   return (
     <section
-      className='py-20 px-4 md:px-12 lg:px-24 bg-[hsl(0,0%,20.78%)]'
+      className='bg-card section-pad px-4 md:px-8'
       aria-labelledby='gallery-heading'
       id='gallery'
     >
-      <div className='max-w-7xl mx-auto'>
-        <h2
-          id='gallery-heading'
-          className='text-5xl font-bold text-center mb-4'
-        >
-          Gallery
-        </h2>
-        <p className='text-center text-gray-400 mb-12 text-lg'>
-          Moments from Campingsthan
-        </p>
+      <div className='mx-auto max-w-7xl'>
+        <div className='mb-10 text-center'>
+          <h2
+            id='gallery-heading'
+            className='text-3xl font-extrabold sm:text-4xl md:text-5xl'
+          >
+            Gallery
+          </h2>
+          <p className='text-muted-foreground mt-3 text-base sm:text-lg'>
+            Real moments from our guests at Campingsthan
+          </p>
+        </div>
 
-        <div
-          className='masonry-grid'
-          role='list'
-        >
-          {galleryImages.map((img, idx) => (
-            <div
-              key={idx}
-              className='masonry-item group'
-              onClick={() => handleImageClick(idx)}
-              role='listitem'
-            >
-              <button
-                className='w-full text-left'
-                aria-label={`View ${img.alt}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleImageClick(idx);
-                }}
+        <div className='masonry-wrap'>
+          <div className='masonry-grid'>
+            {galleryImages.map((img, idx) => (
+              <figure
+                key={img.url}
+                className={`masonry-item group relative cursor-pointer overflow-hidden rounded-2xl shadow-lg ${
+                  idx >= MOBILE_PREVIEW_COUNT && !showAll ? 'max-sm:hidden' : ''
+                }`}
               >
-                <figure className='relative overflow-hidden rounded-2xl shadow-xl cursor-pointer'>
-                  <Image
+                <button
+                  type='button'
+                  className='block w-full'
+                  aria-label={`View image ${idx + 1} of ${galleryImages.length}: ${img.alt}`}
+                  onClick={() => handleImageClick(idx)}
+                >
+                  <Media
                     src={img.url}
-                    alt={img.alt || 'Gallery image'}
-                    width={800}
-                    height={600}
-                    className='w-full h-auto transform group-hover:scale-110 transition-transform duration-500'
-                    loading='lazy'
-                    decoding='async'
-                    quality={[100, 75]}
-                    priority={false}
-                    unoptimized={false}
+                    alt={img.alt}
+                    sizes='(max-width: 639px) 50vw, (max-width: 1023px) 33vw, (max-width: 1535px) 33vw, 25vw'
+                    imageClassName='h-auto w-full transform transition-transform duration-500 group-hover:scale-105'
                   />
                   <div
-                    className='absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center'
+                    className='absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/40'
                     aria-hidden='true'
                   >
-                    <span className='text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-lg font-semibold'>
+                    <span className='text-sm font-semibold text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
                       View Image
                     </span>
                   </div>
-                </figure>
-              </button>
-            </div>
-          ))}
+                </button>
+              </figure>
+            ))}
+          </div>
         </div>
+
+        {hiddenCount > 0 && !showAll && (
+          <div className='mt-6 flex justify-center sm:hidden'>
+            <Button variant='outline' size='lg' onClick={() => setShowAll(true)}>
+              View all {galleryImages.length} photos
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

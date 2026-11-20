@@ -3,6 +3,9 @@
 import { Gauge, Phone, Star, Users2 } from 'lucide-react';
 import Image from 'next/image';
 
+import { Button } from '@/components/ui/button';
+import { contact } from '@/lib/site';
+
 const stats = [
   { value: '5k+', label: 'Happy Campers', icon: Users2 },
   { label: 'Rating', icon: Star },
@@ -10,11 +13,13 @@ const stats = [
 ];
 
 const Jumbotron = ({ onClick = () => null, rating = null }) => {
+  const [phone] = contact.phones;
+
   return (
-    <div className='relative z-10 h-full flex items-center px-4 md:px-12 lg:px-24'>
-      <div className='max-w-7xl w-full mx-auto grid lg:grid-cols-2 gap-12 items-center'>
-        <div>
-          <div className='w-20 h-20 mb-6 bg-accent rounded-2xl flex items-center justify-center shadow-2xl'>
+    <div className='relative z-10 flex h-full items-center px-4 md:px-8'>
+      <div className='mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-16'>
+        <div className='text-center lg:text-left'>
+          <div className='bg-primary mb-6 flex size-16 items-center justify-center rounded-2xl shadow-2xl mx-auto lg:mx-0 lg:size-20'>
             <Image
               src='/media/campingsthan-logo.png'
               alt='Campingsthan Logo'
@@ -24,82 +29,75 @@ const Jumbotron = ({ onClick = () => null, rating = null }) => {
               loading='eager'
               decoding='async'
               priority
-              aria-hidden='false'
             />
           </div>
 
-          <h1 className='text-5xl md:text-7xl font-bold mb-4 leading-tight'>
+          <h1 className='mb-3 text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl lg:text-7xl'>
             Campingsthan
             <span className='sr-only'>
               Discover the Best Camping & Glamping Experiences in India
             </span>
           </h1>
 
-          <p className='text-2xl md:text-3xl text-gray-300 font-light mb-8'>
+          <p className='text-primary mb-4 text-xl font-light sm:text-2xl md:text-3xl'>
             Escape to Nature | Glamping & Camping
           </p>
 
-          <p className='text-lg text-gray-400 mb-8 max-w-xl'>
+          <p className='text-muted-foreground mx-auto mb-8 max-w-xl text-base sm:text-lg lg:mx-0'>
             Experience tranquility at Pawna Lake with our luxury glamping
             triangles and camping tents. Limited to 50-60 guests for a private
             experience.
           </p>
 
-          <div className='flex flex-wrap gap-2 sm:gap-3 justify-start'>
-            <a
-              href='tel:7558640623'
-              className='cursor-pointer px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-accent hover:bg-accent/90 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl text-sm sm:text-base md:text-lg flex justify-center items-center gap-2 text-white!'
-              aria-label='Call now'
-            >
-              <Phone className='w-4 h-4 sm:w-5 sm:h-5' />
-              <span>Call now</span>
-            </a>
+          <div className='flex flex-wrap items-center justify-center gap-3 lg:justify-start'>
+            <Button asChild size='lg'>
+              <a href={`tel:${phone.tel}`} aria-label='Call now'>
+                <Phone aria-hidden='true' />
+                <span>Call now</span>
+              </a>
+            </Button>
 
-            <button
-              onClick={onClick}
-              className='cursor-pointer px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-accent hover:bg-accent/90 rounded-full font-semibold shadow-2xl transition-all duration-300 transform hover:scale-105 flex justify-center items-center gap-2 text-sm sm:text-base md:text-lg'
-              aria-label='Book your camping experience via WhatsApp'
-            >
+            <Button size='lg' onClick={onClick} aria-label='Book via WhatsApp'>
               <img
                 src='/media/whatsapp.svg'
                 alt='WhatsApp Icon'
                 width={20}
                 height={20}
-                className='w-4 h-4 sm:w-5 sm:h-5'
+                className='size-5'
                 loading='lazy'
                 decoding='async'
                 aria-hidden='true'
               />
               <span>Book Now</span>
-            </button>
+            </Button>
           </div>
         </div>
 
-        <aside
-          className='grid grid-cols-3 gap-2'
+        <div
+          className='grid grid-cols-3 gap-3 sm:gap-4'
           aria-label='Campingsthan statistics'
         >
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              className='bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20'
+              className='surface-glass rounded-2xl p-4 text-center sm:p-6'
             >
-              {stat.icon && (
-                <stat.icon
-                  className='w-8 h-8 mx-auto mb-3 text-accent'
-                  aria-hidden='true'
-                />
-              )}
+              <stat.icon
+                className='text-primary mx-auto mb-2 size-7 sm:size-8'
+                aria-hidden='true'
+              />
               <data
                 value={stat.value}
-                className='text-xl md:text-3xl font-bold text-accent block'
+                className='text-primary block text-xl font-bold sm:text-2xl md:text-3xl'
               >
                 {stat.label === 'Rating' ? rating ?? '4.6 (130)' : stat.value}
               </data>
-              <div className='text-sm text-gray-300 mt-1'>{stat.label}</div>
+              <div className='text-muted-foreground mt-1 text-xs sm:text-sm'>
+                {stat.label}
+              </div>
             </div>
           ))}
-        </aside>
+        </div>
       </div>
     </div>
   );

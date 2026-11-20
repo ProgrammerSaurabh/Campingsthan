@@ -1,51 +1,49 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
 
+import { Separator } from '@/components/ui/separator';
+import { contact, site } from '@/lib/site';
+
+const policies = [
+  'Check-in: 4:00 PM',
+  'Check-out: 10:00 AM',
+  '50% Advance Required',
+  'Valid ID Required',
+];
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer
-      className='bg-black py-12 px-4 md:px-12 lg:px-24 relative'
-      role='contentinfo'
-    >
-      <div
-        className='absolute inset-0 bg-linear-to-br from-black/10 via-black/10 to-black/10'
-        aria-hidden='true'
-      />
+    <footer className='bg-background relative px-4 py-12 md:px-8'>
       <Image
         src='/media/footer.png'
-        alt='Decorative footer background'
+        alt=''
         fill
-        className='absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none select-none'
-        loading='lazy'
-        decoding='async'
-        priority={false}
-        aria-hidden='true'
         sizes='100vw'
-        unoptimized={false}
+        className='pointer-events-none absolute inset-0 object-cover opacity-5 select-none'
+        aria-hidden='true'
       />
-      <div className='max-w-7xl mx-auto relative z-10'>
-        <nav
-          className='grid md:grid-cols-4 gap-8 mb-8'
-          aria-label='Footer navigation'
-        >
-          <div>
-            <h2 className='text-2xl font-bold mb-4 text-accent'>
-              Campingsthan
+      <div className='relative z-10 mx-auto max-w-7xl'>
+        <div className='grid grid-cols-2 gap-8 md:grid-cols-4'>
+          <div className='col-span-2 md:col-span-1'>
+            <h2 className='mb-3 text-xl font-bold text-primary sm:text-2xl'>
+              {site.name}
             </h2>
-            <p className='text-gray-400'>
+            <p className='text-muted-foreground text-sm'>
               Your gateway to unforgettable outdoor experiences at Pawna Lake.
             </p>
           </div>
 
-          <div>
-            <h3 className='font-semibold mb-4 text-lg'>Quick Links</h3>
-            <ul className='space-y-2 text-gray-400'>
+          <nav aria-label='Footer navigation'>
+            <h3 className='mb-4 text-base font-semibold text-foreground sm:text-lg'>
+              Quick Links
+            </h3>
+            <ul className='text-muted-foreground space-y-2 text-sm'>
               <li>
                 <a
                   href='#stays'
-                  className='hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline'
+                  className='hover:text-primary transition-colors'
                 >
                   Our Stays
                 </a>
@@ -53,7 +51,7 @@ const Footer = () => {
               <li>
                 <a
                   href='#gallery'
-                  className='hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline'
+                  className='hover:text-primary transition-colors'
                 >
                   Gallery
                 </a>
@@ -61,7 +59,7 @@ const Footer = () => {
               <li>
                 <a
                   href='#about-us'
-                  className='hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline'
+                  className='hover:text-primary transition-colors'
                 >
                   About Us
                 </a>
@@ -69,75 +67,74 @@ const Footer = () => {
               <li>
                 <a
                   href='#contact-us'
-                  className='hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline'
+                  className='hover:text-primary transition-colors'
                 >
                   Contact
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
 
           <div>
-            <h3 className='font-semibold mb-4 text-lg'>Policies</h3>
-            <ul className='space-y-2 text-gray-400'>
-              <li>Check-in: 4:00 PM</li>
-              <li>Check-out: 10:00 AM</li>
-              <li>50% Advance Required</li>
-              <li>Valid ID Required</li>
+            <h3 className='mb-4 text-base font-semibold text-foreground sm:text-lg'>
+              Policies
+            </h3>
+            <ul className='text-muted-foreground space-y-2 text-sm'>
+              {policies.map((policy) => (
+                <li key={policy}>{policy}</li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h3 className='font-semibold mb-4 text-lg'>Contact</h3>
-            <address className='space-y-3 text-gray-400 not-italic'>
+            <h3 className='mb-4 text-base font-semibold text-foreground sm:text-lg'>
+              Contact
+            </h3>
+            <address className='text-muted-foreground space-y-3 text-sm not-italic'>
               <div className='flex items-center gap-2'>
-                <Phone
-                  className='w-4 h-4'
-                  aria-hidden='true'
-                />
-                <div className='flex gap-2'>
-                  <a
-                    href='tel:+917558640623'
-                    className='hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline border-r-2 pr-3'
-                    aria-label='Call us at 7558640623'
-                  >
-                    +91 7558640623
-                  </a>
-                  <a
-                    href='tel:+918530760323'
-                    className='hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline'
-                    aria-label='Call us at 8530760323'
-                  >
-                    +91 8530760323
-                  </a>
+                <Phone className='size-4 shrink-0' aria-hidden='true' />
+                <div className='flex flex-wrap gap-3'>
+                  {contact.phones.map((phone, i) => (
+                    <a
+                      key={phone.tel}
+                      href={`tel:${phone.tel}`}
+                      className={`hover:text-primary transition-colors ${
+                        i < contact.phones.length - 1
+                          ? 'border-r-2 pr-3'
+                          : ''
+                      }`}
+                    >
+                      {phone.display}
+                    </a>
+                  ))}
                 </div>
               </div>
               <div className='flex items-center gap-2'>
-                <Mail
-                  className='w-4 h-4'
-                  aria-hidden='true'
-                />
+                <Mail className='size-4 shrink-0' aria-hidden='true' />
                 <a
-                  href='mailto:campingsthan@gmail.com'
-                  className='hover:text-accent transition-colors focus:text-accent focus:outline-none focus:underline'
-                  aria-label='Email us at campingsthan@gmail.com'
+                  href={`mailto:${contact.email}`}
+                  className='hover:text-primary transition-colors'
                 >
-                  campingsthan@gmail.com
+                  {contact.email}
                 </a>
               </div>
               <div className='flex items-start gap-2'>
-                <MapPin
-                  className='w-4 h-4 mt-1 shrink-0'
-                  aria-hidden='true'
-                />
-                <span>Pawna Lake, Gevhande Khadak, Maharashtra 412108</span>
+                <MapPin className='mt-0.5 size-4 shrink-0' aria-hidden='true' />
+                <span>
+                  Pawna Lake, Gevhande Khadak, Maharashtra{' '}
+                  {site.address.postalCode}
+                </span>
               </div>
             </address>
           </div>
-        </nav>
+        </div>
 
-        <div className='border-t border-gray-800 pt-8 text-center text-gray-400'>
-          <p>&copy; {currentYear} Campingsthan. All rights reserved.</p>
+        <Separator className='my-8' />
+
+        <div className='text-muted-foreground text-center text-sm'>
+          <p>
+            &copy; {currentYear} {site.name}. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

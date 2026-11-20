@@ -1,4 +1,6 @@
 // app/api/google-rating/route.js
+export const revalidate = 3600; // re-fetch from Google Places at most once per hour
+
 export async function GET() {
   const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${process.env.GOOGLE_MAP_PLACE_ID}&fields=name,rating,user_ratings_total,reviews&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`;
 

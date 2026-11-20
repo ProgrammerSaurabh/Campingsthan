@@ -1,6 +1,6 @@
 // app/api/google-rating/route.js
 export async function GET() {
-  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${process.env.NEXT_PUBLIC_GOOGLE_MAP_PLACE_ID}&fields=name,rating,user_ratings_total,reviews&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`;
+  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${process.env.GOOGLE_MAP_PLACE_ID}&fields=name,rating,user_ratings_total,reviews&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`;
 
   const res = await fetch(url);
   const data = await res.json();

@@ -1,9 +1,12 @@
 import { Outfit } from 'next/font/google';
+import Script from 'next/script';
 
 import './globals.css';
 
 import { site } from '@/lib/site';
-import GoogleAnalytics from '@/components/google-analytics';
+
+const GTM_ID = process.env.GTM_ID;
+const IS_VALID_GTM_ID = /^GTM-[A-Z0-9]+$/i.test(GTM_ID || '');
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -78,11 +81,31 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en-IN' className={outfit.variable}>
+      <head>
+        {IS_VALID_GTM_ID && (
+          <Script id='google-tag-manager' strategy='afterInteractive'>
+            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${GTM_ID}');`}
+          </Script>
+        )}
+      </head>
       <body>
+        {IS_VALID_GTM_ID && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height='0'
+              width='0'
+              style={{ display: 'none', visibility: 'hidden' }}
+              title='Google Tag Manager'
+            />
+          </noscript>
+        )}
         {children}
-        <GoogleAnalytics
-          measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
-        />
       </body>
     </html>
   );
